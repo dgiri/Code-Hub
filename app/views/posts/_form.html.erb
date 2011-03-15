@@ -1,0 +1,45 @@
+<div class="effect">
+  <%= form_for(@post) do |f| %>
+    <fieldset class="ui-widget-content">
+    <legend class="ui-widget-header ui-corner-all mLeft10 pAll5" >Create a new post</legend>
+  
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>    
+    <% end %>  
+
+    <div class="mLeft10 mTop20">
+      <%= f.label :topic, "Topic :" %><br />
+      <%= f.text_field :topic, :class => '{validate:{required:true, messages:{required:"Comment body can\'t be blank."}}} iText ui-widget-content ui-corner-all mTop5', :size => 60 %>
+    </div>
+
+    <div class="mLeft10 mTop20">
+      <%= f.label :language, "Language :" %><br />    
+      <%= collection_select(:post, :language_ids, Language.all, :id, :name, {}, :multiple => true, :class =>'ui-widget-content ui-corner-all iselect mTop5', :style =>"display: block; width: 385px; height: 80px;") %>
+    </div>
+
+    <div class="mLeft10 mTop20">
+      <%= f.label :description, "Description :" %><br />
+      <%= f.text_area :description, :cols => 160, :rows => 5, :class => "ui-widget-content ui-corner-all iTextArea mTop5" %>
+    </div>
+    <div class="mLeft10 mTop20">
+      <%= f.label :code, "Code :" %><br />
+      <%= f.text_area :code, :class => "ui-widget-content ui-corner-all iTextArea mTop5", :cols => 160 %>
+    </div>
+    <div class="mLeft10 mTop20 mBot10 actions">
+      <%= f.submit "Create", :class => 'ui-state-hover ui-corner-all pAll10' %>
+    </div>
+    </fieldset>
+  
+    <!-- <div class="actions">
+      <%#= f.submit %>
+    </div> -->
+  <% end %>
+</div>

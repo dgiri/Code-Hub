@@ -1,0 +1,19 @@
+<h1>Search results:</h1>
+<% if !@results.blank? %>
+  <hr/><br />
+  <div>    
+    <% @results.each do |result| %>
+      <p>
+        <b>Topic:</b>
+        <%= link_to result.topic, post_path(result, :option => params[:s]) %>
+      </p>            
+      <hr/>
+    <% end %>
+  </div> 
+  <br />
+  <div>
+    <%= will_paginate @results %>
+  </div>   
+<% else %>
+  <p><%= "No Results are available right now." %></p>
+<% end %>

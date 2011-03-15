@@ -1,0 +1,8 @@
+#notifications{top:-60px;overflow:visible;position:fixed;z-index:9999;width:100%;padding-left:30px;color:#fff;font-size:17px;border-bottom:1px solid #fff;background:#333;font-weight:normal}
+.notifications a{ color:#42d6e7; font-weight:normal;}
+.notification-bar{color:#000;cursor:pointer;left:0;position:absolute;top:0;width:100%}
+.notification-bar-bkg{background-color:#DDEAF3;border-bottom:1px solid #B8D1E3;opacity:0.95;position:static;overflow:hidden;display:block;height:25px;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;width:100%;}
+.notification-bar, .notification-bar-bkg{padding:1.2em 0}
+.notification-bar-container{display:block;overflow:visible;position:relative;width:100%}
+.notification-bar-contents{font-size:150%;margin:0 auto;position:relative;text-align:left;width:960px}
+.notificationIcon{background:url(/images/notification32x32.png) no-repeat 30px 0; color:#fff; font-size:1.1em; padding:5px; padding-left:40px; margin-bottom:10px;}

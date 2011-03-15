@@ -1,0 +1,17 @@
+<div id="notifications">
+  <div id="classnotification-bar-container">
+    <div id="notification-bar-bkg">
+      <div id="notification-bar" style="overflow: hidden; display: block; height: 23px; margin-top: 0px; margin-bottom: 0px; padding-top: 16px; padding-bottom: 16px;">
+        <div id="notification-bar-contents">
+          <span id="notificationIcon" class="notificationIcon fLeft dBlock w32 ht32"></span>
+
+          <div id="message">
+            <%- flash.each do |name, msg| -%>
+              <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+            <%- end -%>              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

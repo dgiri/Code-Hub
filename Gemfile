@@ -7,7 +7,12 @@ gem 'devise', '1.1.rc0'
 
 gem 'mysql2'
 gem "nifty-generators", :group => :development
-
+gem "shoulda"
+gem 'coderay', '0.9.7'
+gem 'factory_girl'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'redhillonrails_core', '~> 1.0.8'
+gem 'will_paginate', '~> 2.3.11'
 
 # Use unicorn as the web server
 # gem 'unicorn'

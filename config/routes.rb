@@ -1,4 +1,9 @@
 NewCodeHub::Application.routes.draw do
+  resources :search
+  resources :languages
+  resources :posts
+  
+  devise_for :admins
   devise_for :users
   match '/users/sign_up' => 'devise/registrations#new'
   
