@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :language_posts
   has_many :languages, :through => :language_posts
+  has_many :comments, :as => :commentable
   belongs_to :user
   
   validates_presence_of :topic, :description, :code

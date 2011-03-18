@@ -1,12 +1,11 @@
-<div class="effect">
+<!-- <div class="effect"> -->
   <%= form_for(@post) do |f| %>
     <fieldset class="ui-widget-content">
     <legend class="ui-widget-header ui-corner-all mLeft10 pAll5" >Create a new post</legend>
   
     <% if @post.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="mLeft10">
         <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
         <ul>
         <% @post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -17,9 +16,9 @@
 
     <div class="mLeft10 mTop20">
       <%= f.label :topic, "Topic :" %><br />
-      <%= f.text_field :topic, :class => '{validate:{required:true, messages:{required:"Comment body can\'t be blank."}}} iText ui-widget-content ui-corner-all mTop5', :size => 60 %>
+      <%= f.text_field :topic, :class => '{validate:{required:true, messages:{required:"Comment body can\'t be blank."}}} iText ui-widget-content ui-corner-all mTop5', :size => 30 %>
     </div>
-
+    <br/><br/>
     <div class="mLeft10 mTop20">
       <%= f.label :language, "Language :" %><br />    
       <%= collection_select(:post, :language_ids, Language.all, :id, :name, {}, :multiple => true, :class =>'ui-widget-content ui-corner-all iselect mTop5', :style =>"display: block; width: 385px; height: 80px;") %>
@@ -42,4 +41,4 @@
       <%#= f.submit %>
     </div> -->
   <% end %>
-</div>
+<!-- </div> -->

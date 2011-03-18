@@ -1,4 +1,11 @@
 NewCodeHub::Application.routes.draw do
+  resources :comments
+
+  resources :profiles do
+    member do
+      put 'upload_image'
+    end
+  end  
   resources :search
   resources :languages
   resources :posts

@@ -1,9 +1,13 @@
 body {
-  background-color: #4B7399;
+  background-color: #5F5F5F;
 /*  background-color: #C7B795;*/
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
-  min-height:500px; 
+/*  font-family: Verdana, Helvetica, Arial;*/
+  font-size: 12px;
+/*  min-height:500px; */
+}
+
+.largeFont {
+	font-size: 14px;
 }
 
 a img {
@@ -93,6 +97,7 @@ color:#45150B;
 .leftPanel{float:left;width:60%;margin-right:20px;}
 .rightPanel{float:right;width:38%;}
 .effect { padding: .5em;  font-size: 1em; border: 1px solid #71871B; background: #F7F7F7; color: #333; }
+.dipeffect { padding: .5em;  font-size: 1em; background: #FFFFFF; color: #333; }
 .paginate { padding: .5em; font-size: 1em; border: .5px solid #71871B; background: #FCFAF2; color: #333; text-align: right;}
 .uAvatar { padding: .2em; border: 1px solid #71871B;float:right;margin-bottom:10px;}
 
@@ -368,7 +373,15 @@ margin:5px;
 .styleTable TD.first, .styleTable TH.first { border-left-width: 0px !important; }
 
 /* For Rails error messages */
-#errorExplanation{border:1px solid #AAAAAA;padding: 10px;margin-right:10px;margin-top:10px;min-height:0;}
-#errorExplanation p{color:#FF5D4A}
-#errorExplanation ul{background:#fff;list-style-type:none;padding:5px;font-weight:bold}
-#errorExplanation ul li{background:url(/images/cross-bullet.gif) no-repeat left top;padding:0 0 0 30px;margin-bottom:5px;list-style:none;font:normal 14px verdana;}
+#error_explanation{border:1px solid #AAAAAA;padding: 10px;margin-right:10px;margin-top:10px;min-height:0;}
+#error_explanation p{color:#FF5D4A}
+#error_explanation ul{background:#fff;list-style-type:none;padding:5px;font-weight:bold}
+#error_explanation ul li{background:url(/images/cross-bullet.gif) no-repeat left top;padding:0 0 0 30px;margin-bottom:5px;list-style:none;font:normal 14px verdana;}
+
+
+
+
+
+
+
+

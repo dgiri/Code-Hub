@@ -1,0 +1,25 @@
+<H3 class="title">Feature posts :</H3>
+<br>
+<% if @posts %>
+  <% @posts.each do |p| %>
+    <div id="feature-post-<%= p.id %>" class="post teaser ui-corner-all effect donate">
+      <div>    		
+    		<% if p.user && p.user.avatar.url != "/avatars/original/missing.png" %>
+    		  <%= image_tag p.user.avatar.url(:thin), :class => "teaser-thumb" %>
+    		<% else %>
+    		  <img src="../images/gravatarthin.jpg" class="teaser-thumb" alt="Avatarl">
+    		<% end %>    		
+    	</div>
+    	      
+      <h2 class="mLeft10"><%= link_to p.topic, post_path(p) %></h2>
+      <div class="postmeta"><p class="s">Posted <% if p.user  %> by <span class="author"><%= p.user.email %></span><% end %> on <%= p.created_at.strftime("%B %d, %Y") %> : <img align="top" style="margin-right:3px;padding-top:2px;" src="../images/comment.png"><%= link_to  pluralize(p.comments.size, 'Comment'), post_path(p) %></p></div> 
+    </div><br />
+  <% end %>
+  <div>
+    <%= will_paginate @posts, :class => 'paginate' %>
+  </div>  
+<% else %>
+  <p><%= alert("No posts are available right now.") %>
+<% end %>
+
+

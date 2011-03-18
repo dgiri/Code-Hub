@@ -12,7 +12,9 @@ gem 'coderay', '0.9.7'
 gem 'factory_girl'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'redhillonrails_core', '~> 1.0.8'
-gem 'will_paginate', '~> 2.3.11'
+# gem 'will_paginate', '~> 2.3.11'
+gem "will_paginate", "~> 3.0.pre2"
+gem "RedCloth"  
 
 # Use unicorn as the web server
 # gem 'unicorn'

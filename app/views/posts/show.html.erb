@@ -1,5 +1,116 @@
-<p id="notice"><%= notice %></p>
 
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="effect ui-corner-all">
+  <p>
+    <b>Languages:</b>
+    <% @post.languages.each do |pl| %>
+      <%=h pl.name %>
+    <% end %>
+  </p>
+
+  <p>
+    <b>Topic:</b>
+    <%=h @post.topic %>
+  </p>
+
+  <p>
+    <b>Description:</b>
+    <%=h @post.description %>
+  </p>
+
+  <p>
+    <b>Code:</b>
+    <div class="dipeffect"><%= CodeRay.scan(@post.code, "#{@post.languages.first.name.downcase}").div(:line_numbers => :table).html_safe %></div>
+  </p>
+  
+  <p style="float:right;">    
+    <% link_to(root_path, {:class => "ui-state-hover ui-corner-all dialog_link mAll5"}) do %>
+        <%= '<span class="ui-icon ui-icon-arrowreturnthick-1-w"></span>Back to home'.html_safe %>
+    <% end %>
+        
+    <% if params[:option] %>
+      <% link_to(search_index_path(:s => params[:option]), {:class => "ui-state-hover ui-corner-all dialog_link mAll5"}) do %>
+          <%= '<span class="ui-icon ui-icon-search"></span>Back to search result'.html_safe %>
+      <% end %>
+    <% end %>    
+    
+    <% if @post.user && current_user && current_user.id == @post.user.id %>
+      <% link_to(edit_post_path(@post), {:class => "ui-state-hover ui-corner-all dialog_link mAll5"}) do %>
+          <%= '<span class="ui-icon ui-icon-pencil"></span>Edit'.html_safe %>
+      <% end %>
+      <% link_to(post_path(@post), {:confirm => 'Are you sure?', :method => :delete, :class => "ui-state-hover ui-corner-all dialog_link mAll5"}) do %>
+          <%= '<span class="ui-icon ui-icon-trash"></span>Destroy'.html_safe %>
+      <% end %>
+    <% end %>
+        
+    <% link_to('#', {:class => "ui-state-hover ui-corner-all dialog_link mAll5", :id => "create_post"}) do %>
+        <%= '<span class="ui-icon ui-icon-comment"></span>Post a Comment'.html_safe %>
+    <% end %>   
+  </p>
+  <p style="clear:both;"></p>
+</div>
+
+<div id="dialog-form" title="Post a comment" class="create-post">
+	<% form_for :comment, @comment, :url => comments_path(:post_id => @post.id), :html => {:class => "remote", :id => "new_comment"} do |f| %>
+	<p class="validateTips" id="new_comment_errors" style="display:none;"><%#= f.error_messages %></p>
+	<fieldset>
+	  <div class="pAll5">
+		  <%= f.label :body, "Comments :" %>
+      <%= f.text_area :body, :rows => 5, :cols => 60, :class => 'iTextArea ui-corner-all' %>
+		</div>
+	</fieldset>
+	<% end %>
+</div>
+
+<h1>Comments (<%= @post.comments.size %>) :</h1><hr>
+<% @post.comments.desc_comments.each do |comment| %>
+  <div class="post teaser effect ui-corner-all mTop10 donate" id="post-Comments-heading">
+    <div class="fLeft">
+  		<% if comment.user.avatar  %>
+  		  <%= image_tag comment.user.avatar.url(:thin), :class => "teaser-thumb" %>
+  		<% else %>
+  		  <img src="../system/avatars/gravatarthin.jpg" class="teaser-thumb" alt="Avatarl">
+  		<% end %>
+  	</div>    
+    <p class="mLeft5">
+      <%= comment.body %> <br />
+      <strong>Posted By: <%= comment.user.email %> on <%= created_on(comment.created_at) %></strong>
+    </p>
+  </div>
+<% end %>
+
+
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    $(function() {
+
+    	$("#dialog").dialog("destroy");
+	
+    	$("#dialog-form").dialog({
+    		autoOpen: false,
+        // height: 380,
+        width: 550,
+    		modal: true,
+    		buttons: {
+    			'Post It': function() {
+    			  $("#new_comment").submit(); 
+    			  $("#new_comment").resetForm(); 
+    			  $(this).dialog("close"); 
+    			},
+    			Cancel: function() {
+    			  $("#new_comment_errors").hide(); 
+    				$(this).dialog('close');
+    			}
+    		},
+    	});
+	
+      $('#create_post').click(function(e) {
+         $('#dialog-form').dialog('open');
+         e.preventDefault();
+       });
+    
+      // $().scrollTo("#post-Comments-heading");
+    });
+  </script>
+<% end %>
