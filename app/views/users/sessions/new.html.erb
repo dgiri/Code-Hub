@@ -1,0 +1,20 @@
+<%= form_for(resource_name, resource, :url => session_path(resource_name)) do |f| %>
+  <fieldset class="ui-widget-content">
+  <legend class="ui-widget-header ui-corner-all mLeft10 pAll5" >Sign in</legend>
+  <div class="mLeft10">
+    <p><%= f.label :email %> :</p>
+    <p><%= f.text_field :email, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+
+    <p><%= f.label :password %> :</p>
+    <p><%= f.password_field :password, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+
+    <% if devise_mapping.rememberable? -%>
+      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <% end -%>
+
+    <p><%= f.submit "Sign in", :class => 'ui-state-hover ui-corner-all pAll5' %></p>
+  </div>
+  </fieldset>
+<% end -%>
+
+<%= render :partial => "devise/shared/links" %>

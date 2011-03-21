@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :sort_name  
   
-  validates_attachment_presence :avatar
-  validates_attachment_size :avatar, :less_than => 5.megabytes  
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png'] 
+  # validates_attachment_presence :avatar
+  # validates_attachment_size :avatar, :less_than => 5.megabytes  
+  # validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png'] 
   
   has_many :posts
   has_many :comments

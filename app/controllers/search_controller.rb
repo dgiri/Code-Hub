@@ -4,7 +4,7 @@ class SearchController < ApplicationController
       respond_to do |format|
         flash[:notice] = 'Please give some appopriate text'
         format.html {
-          redirect_to home_index_path
+          redirect_to root_path
         }
       end
     else

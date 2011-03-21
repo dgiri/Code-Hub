@@ -27,8 +27,16 @@
     <%= render :partial => "shared/flash_notice" %>
     <%= render :partial => "shared/progress" %>
     <div class="topbar">
-      <div class="logo" id="logo"><br><br><img src='../images/logo_small.png'></div>
-      <div class="msg" id="msg">This is a test message</div>
+      <div class="logo" id="logo"><br><br><img src='/images/logo_small.png'></div>
+      <!-- <div class="msg" id="msg">Welcome to codehub.com </div> -->
+      <div id="msg" class="msg">
+        <% form_tag(search_index_path, :method => :get ) do %>
+            <%= text_field_tag :s, params[:s], :id => 'search', :autocomplete => :off, :size => 40, :class =>'iText' %>
+            <%= submit_tag 'Search', :id => 'button', :class =>'ui-state-default ui-corner-all' %>
+        <% end %>
+      </div>
+      
+      
     </div>  
     <div class="sidebar">      
       <%= render :partial => 'shared/side_panel' %>
@@ -53,7 +61,7 @@
       <% end -%>
       
       <% if admin_signed_in? -%>
-        <p id="admin_login_box">
+        <p id="admin_login_box" class="largeFont" style="float:right;">
           <%= current_admin.email %> |
           <%#= link_to 'Admin section', admins_path %> |
           <%= link_to 'Sign out', destroy_admin_session_path %>
@@ -88,7 +96,7 @@
     <div class="wrapper" style="clear:both;height:50px;"></div>
 
     <div class="footer" id="footer">
-      <img src="images/logo_small.png" align=absmiddle title="www.intelisoftbd.com"> Designed By <a target="_blank" href='http://www.intelisoftbd.com'>Intelisoft Solutions</a>.
+      <img src="images/logo_small.png" align=absmiddle title="www.intelisoftbd.com"> Designed By <a target="_blank" href='http://debashis.tumblr.com/'>Debashis Giri</a>.
     </div>
     
     <%= yield(:js) %>

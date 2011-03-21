@@ -1,0 +1,41 @@
+
+
+
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_for(resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <fieldset class="ui-widget-content">
+  <legend class="ui-widget-header ui-corner-all mLeft10 pAll5" >Edit <%= resource_name.to_s.humanize %></legend>
+  <div class="mLeft10">
+    <%= f.error_messages %>
+
+    <p><%= f.label :email %></p>
+    <p><%= f.text_field :email, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+    
+    <p><%= f.label :first_name %></p>
+    <p><%= f.text_field :first_name, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+    
+    <p><%= f.label :last_name %></p>
+    <p><%= f.text_field :last_name, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+    
+    <p><%= f.label :sort_name %></p>
+    <p><%= f.text_field :sort_name, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+    
+    <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
+    <p><%= f.password_field :password, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.password_field :password_confirmation, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+
+    <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
+    <p><%= f.password_field :current_password, :class => "iText ui-widget-content ui-corner-all", :size => 60 %></p>
+
+    <p><%= f.submit "Update", :class => 'ui-state-hover ui-corner-all pAll5' %></p>
+  </div>
+  </fieldset>
+<% end -%>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+
+<%= link_to "Back", :back %>

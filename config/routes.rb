@@ -10,8 +10,9 @@ NewCodeHub::Application.routes.draw do
   resources :languages
   resources :posts
   
-  devise_for :admins
-  devise_for :users
+  devise_for :admins, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
+  # devise_for :users
+  devise_for :users,  :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
   match '/users/sign_up' => 'devise/registrations#new'
   
   # The priority is based upon order of creation:
