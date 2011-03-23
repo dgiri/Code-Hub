@@ -1,4 +1,4 @@
-<ul class="menu">
+<ul class="menu clearFix">
   <li class="title"><H3><%= user_signed_in? ? "Other developers" : "Developers" -%></H3></li>
   <div id="following-avatars" class="content">
 	  <% @all_users.each do |u| %>
@@ -12,3 +12,17 @@
 		<% end %>  				
 	</div>	
 </ul> 
+<ul class="menu">
+  <li class="title mBot10"><H3>	<span class="smalltitle popularPost">Popular Posts</span></H3></li>
+	<% if !@popular_posts.blank? %>
+		<% @popular_posts[0..2].each do |pp| %>
+		<div class="content">
+			<span class="smallredtext"><%= pp.created_at.strftime("%B %d, %Y") %></span><br />
+			<span class="bodytext"><%= pp.topic %> [<%= (pp.rating).round(2) %>/5]</span><br />
+		  <%= link_to "More...", post_path(pp), :class => "smallgraytext" %><br /><br />
+		</div>
+		<% end %>
+	<% else %>
+	  <span class="smallredtext"><%= "No Posts are available." %></span>
+	<% end %>
+</ul>

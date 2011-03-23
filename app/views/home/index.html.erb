@@ -12,6 +12,10 @@
     	</div>
     	      
       <h2 class="mLeft10"><%= link_to p.topic, post_path(p) %></h2>
+      <div id="post-rating-<%= p.id %>" style="padding-left:9px;">
+        <%= render :partial => 'post_ratings', :locals =>{:p => p} %>  
+      </div>
+      
       <div class="postmeta"><p class="s">Posted <% if p.user  %> by <span class="author"><%= p.user.email %></span><% end %> on <%= p.created_at.strftime("%B %d, %Y") %> : <img align="top" style="margin-right:3px;padding-top:2px;" src="../images/comment.png"><%= link_to  pluralize(p.comments.size, 'Comment'), post_path(p) %></p></div> 
     </div><br />
   <% end %>

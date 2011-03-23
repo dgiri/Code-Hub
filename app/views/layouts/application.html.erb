@@ -15,10 +15,12 @@
 
       html, body, #wrapper{ height: 100%; }
             body > #wrapper{ height: auto; min-height: 99.65%; margin-top:-105px;}
-    </style>
+    </style>    
+    
     <%= stylesheet_link_tag 'template' %>
     <%= stylesheet_link_tag 'application', 'jquery-ui-1.8.2.custom', 'style', 'vistyle' %>
     <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.livequery', 'jquery.validate', 'jquery.metadata', 'jquery.form', 'jquery.scrollTo', 'rails', 'application' %>
+    
     <%= csrf_meta_tag %>
     <%= yield(:head) %>    
   </head>

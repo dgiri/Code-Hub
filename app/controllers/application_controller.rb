@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
   end  
   
   def all_users_list
-    @all_users = (current_user.blank? ? User.all : User.find(:all, :conditions => ["id != ?", current_user.id]))    
+    @all_users = (current_user.blank? ? User.all : User.find(:all, :conditions => ["id != ?", current_user.id])) 
+    @popular_posts = Post.has_ratings   
   end
 end

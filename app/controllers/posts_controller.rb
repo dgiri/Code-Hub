@@ -83,4 +83,37 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def rate_post
+    @post = Post.find(params[:id])
+    Rating.delete_all(["rateable_type = 'Post' AND rateable_id = ? AND user_id = ?", 
+          @post.id, current_user.id])        
+    rating = Rating.new(:rating => params[:rating], :user_id => current_user.id)
+    if @post.ratings << rating 
+    
+      respond_to do |format|
+        
+        format.html { redirect_to home_index_path }
+        format.js{
+          render :update do |page|            
+            page["#post-rating-#{@post.id}"].html render(:partial => 'home/post_ratings', :locals =>{:p => @post})
+            page <<  "$('#feature-post-#{@post.id}').effect('highlight', {}, 10000);"   
+          end
+        }
+      end
+    else
+      respond_to do |format|
+        format.html{
+          flash[:notice] = "Rating range must be with in 0 to 5"
+          redirect_to root_path
+        }
+        format.js{
+          render :update do |page|
+            page << "Message.notice('Rating range must be with in 0 to 5')";
+          end
+        }
+      end      
+    end     
+  end
+  
 end

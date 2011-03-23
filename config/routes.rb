@@ -8,7 +8,11 @@ NewCodeHub::Application.routes.draw do
   end  
   resources :search
   resources :languages
-  resources :posts
+  resources :posts do
+    member do 
+      get 'rate_post'
+    end
+  end
   
   devise_for :admins, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
   # devise_for :users

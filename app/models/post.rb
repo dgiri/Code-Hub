@@ -8,4 +8,8 @@ class Post < ActiveRecord::Base
   
   cattr_reader :per_page
   @@per_page = 5  
+  
+  acts_as_rateable :average => true
+   
+  scope :has_ratings, :joins => :ratings, :select => 'DISTINCT  posts.id, posts.topic, posts.created_at', :order =>'posts.topic'  
 end
