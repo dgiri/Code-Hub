@@ -1,0 +1,9 @@
+<strong>Comments[<%= story.comments.blank? ? 0 : story.comments.size %>]:</strong><br /><br />
+<% @story.comments.each do |sc| %>
+  <div id="comment_item_<%= sc.id %>">
+    <%= sc.body %><br />
+    <strong><%= sc.user.full_name.blank? ? sc.user.email : sc.user.full_name %></strong> [<%= created_on(sc.created_at) %>]<br />
+      <%#= link_to "delete", comment_path(sc), :method => :delete, :class => "remote" %>
+    <br />
+  </div>
+<% end %>

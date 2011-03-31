@@ -1,4 +1,14 @@
 NewCodeHub::Application.routes.draw do
+  resources :tasks do
+    collection do
+      get 'update_task_status'
+    end
+  end
+
+  resources :stories
+
+  resources :projects
+
   resources :comments
 
   resources :profiles do
@@ -15,7 +25,7 @@ NewCodeHub::Application.routes.draw do
   end
   
   devise_for :admins, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
-  # devise_for :users
+  resources :admins, :only => [:index]
   devise_for :users,  :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
   match '/users/sign_up' => 'devise/registrations#new'
   

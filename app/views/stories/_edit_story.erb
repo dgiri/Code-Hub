@@ -1,0 +1,41 @@
+
+<% form_for :story, @story, :url => story_path(@story), :html => {:class => "remote", :id => "edit_story", :method => :put} do |f| %>
+	<p class="validateTips" id="edit_story_errors" style="display:none;"><%#= f.error_messages %></p>
+	<fieldset>
+    <p>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :class => 'iTextArea ui-corner-all' %>
+    </p>
+
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :cols => 63, :rows => 5, :class => 'iTextArea ui-corner-all' %>
+    </p>
+
+    <p>
+      <%= f.label :story_type %><br />
+      <%= f.select(:story_type, Story::STORY_TYPES, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+    </p>
+
+    <p>
+      <%= f.label :points %><br />
+      <%= f.select(:points, Story::STORY_POINTS, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+    </p>
+
+    <p>
+      <%= f.label :label %><br />
+      <%= f.select(:label, Story::STORY_LEVELS, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+    </p>
+
+    <p>
+      <%= f.label :requester %><br />
+      <%= f.select(:requester, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 ui-widget-content ui-corner-all iSelect'}) %>
+    </p>
+
+    <p>
+      <%= f.label :owner %><br />
+      <%= f.select(:owner, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 ui-widget-content ui-corner-all iSelect'}) %>
+    </p>
+	</fieldset>
+<% end %>
+

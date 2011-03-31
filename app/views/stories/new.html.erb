@@ -1,0 +1,45 @@
+<h1>New story</h1>
+<% form_for(:story, @story, :url => stories_path(:project_id => @project)) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  
+  <p>
+    <%= f.label :story_type %><br />
+    <%= f.select(:story_type, Story::STORY_TYPES, {:prompt => true}, :class => 'w260') %>
+  </p>
+  
+  <p>
+    <%= f.label :points %><br />
+    <%= f.select(:points, Story::STORY_POINTS, {:prompt => true}, :class => 'w260') %>
+  </p>
+  
+  <p>
+    <%= f.label :label %><br />
+    <%= f.select(:label, Story::STORY_LEVELS, {:prompt => true}, :class => 'w260') %>
+  </p>
+  
+  <p>
+    <%= f.label :requester %><br />
+    <%= f.select(:requester, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 '}) %>
+  </p>
+  
+  <p>
+    <%= f.label :owner %><br />
+    <%= f.select(:owner, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 '}) %>
+  </p>
+  
+  
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', stories_path %>

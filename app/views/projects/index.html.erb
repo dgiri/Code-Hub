@@ -1,0 +1,31 @@
+<h1>Listing projects</h1>
+
+<table id="project-list-table" class="full">
+    <tr>
+        <th>Name</th>
+        <th>Details</th>
+        <th></th>
+        <% if admin_signed_in? %><th></th><% end %>
+        <% if admin_signed_in? %><th></th><% end %>
+    </tr>
+    <% @projects.each do |project| %> 
+    <tr>
+        <td><%=h project.name %></td>
+        <td><%=h project.details %></td>
+        <td><%= link_to 'Show', project %></td>
+        <% if admin_signed_in? %><td><%= link_to 'Edit', edit_project_path(project) %></td><% end %>        
+        <% if admin_signed_in? %><td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td><% end %>        
+    </tr>
+    <% end %>
+</table>
+<br /><br />
+
+<%= link_to 'New project', new_project_path if admin_signed_in? %>
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $("#project-list-table").styleTable();
+    });
+  </script>  
+<% end %>

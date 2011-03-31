@@ -1,0 +1,87 @@
+<% form_for :story, @story, :url => story_path(@story), :html => {:class => "remote", :id => "edit_story", :method => :put} do |f| %>
+  <fieldset class="ui-widget-content">
+    <legend class="ui-widget-header ui-corner-all mLeft10 pAll5"><%= @story.story_type.capitalize %> details</legend> 
+    <div class="mLeft10"> 
+    	<%= f.error_messages %>
+      <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title, :class => 'w260 iTextArea ui-corner-all' %>
+      </p>
+
+      <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description, :cols => 90, :rows => 5, :class => 'iTextArea ui-corner-all' %>
+      </p>
+
+      <p>
+        <%= f.label :story_type %><br />
+        <%= f.select(:story_type, Story::STORY_TYPES, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+      </p>
+
+      <p>
+        <%= f.label :points %><br />
+        <%= f.select(:points, Story::STORY_POINTS, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+      </p>
+
+      <p>
+        <%= f.label :label %><br />
+        <%= f.select(:label, Story::STORY_LEVELS, {:prompt => true}, :class => 'w260 ui-widget-content ui-corner-all iSelect') %>
+      </p>
+
+      <p>
+        <%= f.label :requester %><br />
+        <%= f.select(:requester, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 ui-widget-content ui-corner-all iSelect'}) %>
+      </p>
+
+      <p>
+        <%= f.label :owner %><br />
+        <%= f.select(:owner, @project_users.map { |user| [user.email, user.id] }, {:prompt => "Select User"}, {:class =>'w260 ui-widget-content ui-corner-all iSelect'}) %>
+      </p>
+  
+      <p>
+        <%= f.submit 'Update', :class => 'ui-state-hover ui-corner-all pAll5' %>        
+        
+        <% link_to(project_path(@story.project), {:class => "ui-state-hover ui-corner-all dialog_link fRight mRight10", :id => "create_post"}) do %>
+            <%= '<span class="ui-icon ui-icon-arrowreturnthick-1-w"></span>Back to project'.html_safe %>
+        <% end %>        
+      </p>      
+    </div>
+  </fieldset>
+<% end %>
+
+<hr/>
+<div class="effect ui-corner-all">  
+  <div id="Story-Task-List">
+    <%= render :partial => 'tasks/task_list', :locals => { :story => @story} %>
+  </div>
+  
+	<% form_for :task, @task, :url => tasks_path(:story_id => @story), :html => {:method => :post, :class => 'remote', :id => "Task-Creation-From"} do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :description, "Add a new task" %><br />
+      <%= f.text_area :description, :cols => 90, :rows => 1, :class => 'iTextArea ui-corner-all' %>
+    </p>
+    <p>
+      <%= f.submit 'Add Task', :class => 'ui-state-hover ui-corner-all pAll5' %>
+    </p>
+  <% end %>  
+</div>
+<hr/>
+<div class="effect ui-corner-all">
+  <div id="Story-Comment-List">
+    <%= render :partial => 'comment_list', :locals => { :story => @story} %>
+  </div>
+  
+	<% form_for :comment, @comment, :url => comments_path(:story_id => @story), :html => {:method => :post, :class => 'remote', :id => "Comment-Creation-From"} do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :body, "Post a new comment" %><br />
+      <%= f.text_area :body, :cols => 90, :rows => 1, :class => 'iTextArea ui-corner-all' %>
+    </p>
+    <p>
+      <%= f.submit 'Add comment', :class => 'ui-state-hover ui-corner-all pAll5' %>
+    </p>
+  <% end %>  
+</div>
+
+

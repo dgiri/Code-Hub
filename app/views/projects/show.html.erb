@@ -1,0 +1,148 @@
+<p>
+  <b>Name:</b>
+  <%=h @project.name %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%=h @project.details %>
+</p>
+
+<% if admin_signed_in? %> <%= link_to 'Edit', edit_project_path(@project) %> |<% end %>
+<%= link_to 'Back', projects_path %> | 
+<%= link_to "Add Stories", new_story_path(:project_id => @project) %>
+<hr/>
+
+<h1>List of Features :</h1>
+
+<table id="project-feature-list-table" class="full">
+  <tr>
+    <th>Title</th>
+    <th>Points</th>
+    <th>Label</th>
+    <th>Requester</th>
+    <th>Owner</th>
+    <th></th>
+  </tr>
+  <% unless @features.blank? %>
+    <% @features.each do |f| %> 
+    <tr>
+      <td><%= link_to f.title, edit_story_path(f), :class => "remote" %></td>
+      <td><%=h f.points %></td>
+      <td><%=h f.label %></td><%#= link_to 'Show', project %>
+      <td><%= f.story_requester.blank? ? '' : f.story_requester.full_name.blank? ?  f.story_requester.email : f.story_requester.full_name %></td>   
+      <td><%= f.story_owner.blank? ? '' : f.story_owner.full_name.blank? ?  f.story_owner.email : f.story_owner.full_name %></td> 
+      <td><%= link_to "Details", edit_story_path(f) %></td>   
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="7"><%= will_paginate @features, :class => 'paginate' %></td>
+    </tr>      
+  <% else %>
+    <tr>
+      <td colspan="7">No records available</td>
+    </tr>     
+  <% end %>
+</table>
+
+
+<h1>List of Bugs :</h1>
+
+  <table id="project-bug-list-table" class="full">
+    <tr>
+      <th>Title</th>
+      <th>Points</th>
+      <th>Label</th>
+      <th>Requester</th>
+      <th>Owner</th>
+      <th></th>
+    </tr>
+    <% unless @bugs.blank? %>
+      <% @bugs.each do |b| %> 
+      <tr>
+        <td><%= link_to b.title, edit_story_path(b), :class => "remote" %></td>
+        <td><%=h b.points %></td>
+        <td><%=h b.label %></td><%#= link_to 'Show', project %>
+        <td><%= b.story_requester.blank? ? '' : b.story_requester.full_name.blank? ?  b.story_requester.email : b.story_requester.full_name %></td>   
+        <td><%= b.story_owner.blank? ? '' : b.story_owner.full_name.blank? ?  b.story_owner.email : b.story_owner.full_name %></td>
+        <td><%= link_to "Details", edit_story_path(b) %></td>    
+      </tr>
+      <% end %>
+      <tr>
+        <td colspan="7"><%= will_paginate @bugs, :class => 'paginate' %></td>
+      </tr>      
+    <% else %>
+      <tr>
+        <td colspan="7">No records available</td>
+      </tr>    
+    <% end %>
+  </table>
+
+<h1>List of Chores :</h1>
+
+<table id="project-chore-list-table" class="full">
+    <tr>
+      <th>Title</th>
+      <th>Points</th>
+      <th>Label</th>
+      <th>Requester</th>
+      <th>Owner</th>
+      <th></th>
+    </tr>
+    <% unless @chores.blank? %>
+      <% @chores.each do |c| %> 
+      <tr>
+        <td><%= link_to c.title, edit_story_path(c), :class => "remote" %></td>
+        <td><%=h c.points %></td>
+        <td><%=h c.label %></td><%#= link_to 'Show', project %>
+        <td><%= c.story_requester.blank? ? '' : c.story_requester.full_name.blank? ?  c.story_requester.email : c.story_requester.full_name %></td>   
+        <td><%= c.story_owner.blank? ? '' : c.story_owner.full_name.blank? ?  c.story_owner.email : c.story_owner.full_name %></td>
+        <td><%= link_to "Details", edit_story_path(c) %></td>     
+      </tr>
+      <% end %>
+      <tr>
+        <td colspan="7"><%= will_paginate @chores, :class => 'paginate' %></td>
+      </tr>      
+    <% else %>
+      <tr>
+        <td colspan="7">No records available</td>
+      </tr>
+    <% end %>
+</table>
+
+
+<div id="story-edit-section-dialog-form" title="Edit a story" class="create-post">
+  <div id="story-edit-section"></div>
+</div>
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#project-feature-list-table").styleTable();
+      $("#project-bug-list-table").styleTable();
+      $("#project-chore-list-table").styleTable();
+    });
+
+    $(function() {
+    	$("#dialog").dialog("destroy");
+	
+    	$("#story-edit-section-dialog-form").dialog({
+    		autoOpen: false,
+        // height: 380,
+        width: 650,
+    		modal: true,
+    		buttons: {
+    			'Post It': function() {
+    			  $("#edit_story").submit(); 
+    			  $("#edit_story").resetForm(); 
+    			  $(this).dialog("close"); 
+    			},
+    			Cancel: function() {
+            $("#edit_story_errors").hide(); 
+    				$(this).dialog('close');
+    			}
+    		},
+    	});
+    });
+  </script> 
+<% end %>

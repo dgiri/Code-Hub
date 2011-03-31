@@ -17,8 +17,12 @@ class User < ActiveRecord::Base
   
   has_many :posts
   has_many :comments
-  # has_many :project_users
-  # has_many :projects, :through => :project_users
-  # has_many :stories
-  # has_many :tasks  
+  has_many :project_users
+  has_many :projects, :through => :project_users
+  has_many :stories
+  has_many :tasks  
+  
+  def full_name
+    @full_name ||= "#{first_name} #{last_name}"
+  end  
 end

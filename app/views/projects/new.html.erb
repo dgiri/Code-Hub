@@ -1,0 +1,32 @@
+<h1>New project</h1>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => '{validate:{required:true, messages:{required:"Project name can\'t be blank."}}} iText ui-widget-content ui-corner-all mTop5', :size => 60 %>
+  </p>
+  
+  <p>
+    <%= f.label :details %><br />
+    <%= f.text_area :details, :cols => 160, :rows => 5, :class => "ui-widget-content ui-corner-all iTextArea mTop5" %>
+  </p>
+  
+  <p class="mTop10">	 
+		<ul class="formSec clearFix whiteTint pAll20 mAuto">
+		  <% User.all.each do |c| %>				
+				<li>
+				  <%= check_box_tag "project[user_ids][]", c.id, false %>
+				  <%= c.email %> 
+				</li>
+			<% end %>
+		</ul>		
+	</p>
+	
+  
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', admins_path %>
