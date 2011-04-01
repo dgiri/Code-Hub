@@ -46,4 +46,6 @@ NewCodeHub::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.default_url_options = { :host => 'new-code-hub.heroku.com' }
 end
