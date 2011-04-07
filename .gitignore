@@ -13,4 +13,4 @@ vendor/ruby/
 vendor/bundle/
 config/secrets.yml
 webrat.log
-
+public/system/
