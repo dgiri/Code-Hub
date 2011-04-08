@@ -16,7 +16,6 @@ NewCodeHub::Application.routes.draw do
   resources :profiles do
     member do
       put 'upload_image'
-      put 'upload_song' 
     end
   end  
   resources :search
