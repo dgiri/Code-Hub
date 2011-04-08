@@ -22,6 +22,7 @@
     <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.livequery', 'jquery.validate', 'jquery.metadata', 'jquery.form', 'jquery.scrollTo', 'rails', 'application' %>
     
     <%= csrf_meta_tag %>
+	<%= mp3_player_headers %>
     <%= yield(:head) %>    
   </head>
 
@@ -58,6 +59,7 @@
           <%= current_user.email %> |
           <%= link_to 'My info', edit_user_registration_path %> |
           <%= link_to 'My work', projects_path %> |
+					<%= link_to 'My songs', songs_path %> |
           <%= link_to 'Sign out', destroy_user_session_path %>          
         </p>
       <% end -%>

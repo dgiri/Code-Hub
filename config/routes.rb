@@ -1,4 +1,6 @@
 NewCodeHub::Application.routes.draw do
+  resources :songs
+
   resources :tasks do
     collection do
       get 'update_task_status'
@@ -14,6 +16,7 @@ NewCodeHub::Application.routes.draw do
   resources :profiles do
     member do
       put 'upload_image'
+      put 'upload_song' 
     end
   end  
   resources :search

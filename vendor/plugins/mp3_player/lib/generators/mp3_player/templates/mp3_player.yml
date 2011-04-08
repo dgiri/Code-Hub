@@ -1,0 +1,36 @@
+## Options
+
+#:autostart:         'no'     # if yes, player starts automatically
+#:loop:              'no'     # if yes, player loops
+#:animation:         'yes'    # if no, player is always open
+#:remaining:         'no'     # if yes, shows remaining track time rather than elapsed time
+#:noinfo:            'no'     # if yes, disables the track information display
+#:initialvolume:     '60'     # initial volume level (from 0 to 100)
+#:buffer:            '5'      # buffering time in seconds
+#:encode:            'no'     # indicates that the mp3 file urls are encoded
+#:checkpolicy:       'no'     # tells Flash to look for a policy file when loading mp3 files (this allows Flash to read ID3 tags from files hosted on a different domain)
+#:rtl:               'no'     # switches the layout to RTL (right to left) for Hebrew and Arabic languages
+
+## Flash player options
+
+#:width:             '290'    # width of the player. e.g. 290 (290 pixels) or 100%
+#:transparentpagebg: 'no'     # if yes, the player background is transparent (matches the page background)
+#:pagebg:            ''       # player background color (set it to your page background when transparentbg is set to ‘no’)
+
+## Colour scheme options
+
+#:bg:                'E5E5E5' # Background
+#:leftbg:            'CCCCCC' # Speaker icon/Volume control background
+#:lefticon:          '333333' # Speaker icon
+#:voltrack:          'F2F2F2' # Volume track
+#:volslider:         '666666' # Volume slider
+#:rightbg:           'B4B4B4' # Play/Pause button background
+#:rightbghover:      '999999' # Play/Pause button background (hover state)
+#:righticon:         '333333' # Play/Pause icon
+#:righticonhover:    'FFFFFF' # Play/Pause icon (hover state)
+#:loader:            '009900' # Loading bar
+#:track:             'FFFFFF' # Loading/Progress bar track backgrounds
+#:tracker:           'DDDDDD' # Progress track
+#:border:            'CCCCCC' # Progress bar border
+#:skip:              '666666' # Previous/Next skip buttons
+#:text:              '333333' # Text

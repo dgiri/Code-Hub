@@ -1,0 +1,55 @@
+=Mp3Player
+
+Here's an mp3_player plugin for Rails 3.
+
+To install:
+
+  rails plugin install git://github.com/sekrett/mp3_player.git
+
+To setup:
+
+  rails generate mp3_player
+
+This adds <i>player.swf</i> and <i>audio-player.js</i> to <i>public/</i>. You may use <tt>--skip-swfobject</tt> to add
+<i>audio-player-noswfobject.js</i>, if your layout already has included <i>swfobject</i> like this:
+
+  <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js' %>
+
+In your layout add:
+
+  <%= mp3_player_headers %>
+
+It will automatically detect, which js file you have generated and include it.
+
+==Example Usage
+
+To check player is working simply add:
+
+  <%= mp3_player("http://github.com/sekrett/mp3_player/raw/master/test.mp3") %>
+
+to your view.
+
+If you're using paperclip:
+
+  <%= mp3_player @my_model.mp3.url %>
+
+Additionally, if you want to go the super simple route, you can just use google's MP3 player with the following helper
+(you can use this even without doing the whole "rails generate mp3_player" thing)
+
+  <%= google_mp3_player @my_model.mp3.url %>
+
+==Customization
+
+You may specify extra options (all colors should be expressed as hexadecimal values minus the '#'. eg.
+
+  <%= mp3_player @my_model.mp3.url, { bg: "99FFFF", text: 'FF0000') %>
+
+For a complete list of options see documentation at http://wpaudioplayer.com/standalone.
+
+This plugin is based on the Audio Player 2.0 by Martin Laine (http://wpaudioplayer.com/standalone)
+
+Thanks to Matt Ittigson (http://github.com/mattenat) for inspiring changes to help support paperclip.
+
+Copyright © 2009 Gavin Morrice (http://handyrailstips.com), released under the MIT license
+
+Copyright © 2010 Alexander Zubkov (http://github.com/sekrett), released under the MIT license
