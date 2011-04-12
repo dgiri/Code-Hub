@@ -13,13 +13,16 @@
     <% unless p.ratings.blank? %> 
       <span style="float:right;" class="mTop10"><%= (p.rating) %>/5 Stars (<%= p.ratings.size %> votes)</span>
     <% end %> 
-    <ul class="star-rating">       
-      <li style='width:<%= ((p.ratings.blank? ? 0 : p.rating)* 30).to_i -%>px;' class="current-rating"></li>
-      <% 1.upto(5) do |x| -%>
-        <li> <%= link_to "#{x}", rate_post_post_path(p, :rating => x), {:class => "#{@convert[x-1]}-stars remote", 
-        :name => "#{pluralize(x,'star')} out of 5"} %>      
-        </li>
-      <% end %>
+    <ul class="star-rating">      
+			<li style='width:<%= ((p.ratings.blank? ? 0 : p.rating)* 30).to_i -%>px;' class="current-rating"></li>
+			<% unless p.user.id == current_user.id %>
+				<li style='width:<%= ((p.ratings.blank? ? 0 : p.rating)* 30).to_i -%>px;' class="current-rating"></li>
+				<% 1.upto(5) do |x| -%>
+	        <li> <%= link_to "#{x}", rate_post_post_path(p, :rating => x), {:class => "#{@convert[x-1]}-stars remote", 
+	        :name => "#{pluralize(x,'star')} out of 5"} %>      
+	        </li>
+	      <% end %>	      
+			<% end %>
     </ul>
 	</p>
 <% end %>      

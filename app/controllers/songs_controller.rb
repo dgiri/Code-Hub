@@ -2,8 +2,8 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.xml
   def index
-    @songs = Song.all
-
+    @songs = current_user.songs
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @songs }

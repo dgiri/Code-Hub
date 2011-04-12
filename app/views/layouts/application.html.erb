@@ -71,7 +71,7 @@
           <%= link_to 'Sign out', destroy_admin_session_path %>
         </p>
       <% end -%>
-      
+      <p class="clear"></p> 
       <% if user_signed_in? -%>
         <% if current_user.avatar.url != "/avatars/original/missing.png" %>
           <p id="uAvatar" class="uAvatar">            
@@ -81,13 +81,16 @@
         <p id="uAvatar" style="float:right;">
           <a><img src="/images/gravatarthin.jpg" class="teaser-thumb" alt="Avatarl"></a>
         </p>
-        <% end %>            
-      
+        <% end %>     
       
         <div id="avatar" style="display:none;">
-          <% form_for :user, @user, :url => upload_image_profile_path(current_user.id), :html => { :multipart => true, :method => :put } do |f| %>
-            <%= f.file_field :avatar, :class => 'iText' %>
-            <%= f.submit "Upload" %>
+          <% form_for :user, @user, :url => upload_image_profile_path(current_user.id), :html => { :multipart => true, :method => :put, :id => 'userAvatarUplode' } do |f| %>
+					<fieldset>
+					  <div class="pAll5">					
+            	<%= f.file_field :avatar, :class => 'iSelect ui-widget-content ui-corner-all' %>
+            	<%#= f.submit "Upload" %>
+						</div>
+					</fieldset>
           <% end %>
         </div>
       <% end %> 
@@ -120,13 +123,28 @@
     <% end %>
     
     <script type="text/javascript">
-     $('#uAvatar a').click(function(e) {
-        $('#avatar').slideToggle("fast");
-        e.preventDefault();
-      }); 
-    </script>
-    
-    
+ 		  $('#uAvatar a').click(function() {
+	    	$("#dialog").dialog("destroy");
+
+	    	$("#avatar").dialog({
+	    		autoOpen: true,
+	        width: 300,
+	    		modal: true,
+					title: "Select avatar",
+	    		buttons: {
+	    			'Upload': function() {
+	    			  $("#userAvatarUplode").submit(); 
+	    			  $("#userAvatarUplode").resetForm(); 
+	    			  $(this).dialog("close"); 
+	    			},
+	    			Cancel: function() {
+	    				$(this).dialog('close');
+	    			}
+	    		},
+	    	});
+	    });
+	  
+    </script>   
   </body>
 </html>
 

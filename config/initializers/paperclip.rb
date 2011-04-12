@@ -4,4 +4,4 @@
 # imagemagick_installation_binary = "/opt/local/bin"
 # Paperclip.options.merge!(:command_path => imagemagick_installation_binary)
 
-Paperclip.options[:image_magick_path] = "/opt/local/bin"
+# Paperclip.options[:image_magick_path] = "/opt/local/bin"
