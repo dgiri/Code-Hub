@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :topic, :description, :code
   
   cattr_reader :per_page
-  @@per_page = 5  
+  @@per_page = 4  
   
   acts_as_rateable :average => true
    

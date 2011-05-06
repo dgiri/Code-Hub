@@ -1,9 +1,8 @@
 <h1>Listing songs</h1>
 
-<table>
+<table id="songListTable" class="full">
   <tr>
     <th>Name</th>
-    <th></th>
 		<th></th>
     <th></th>
   </tr>
@@ -11,13 +10,25 @@
 <% @songs.each do |song| %>
   <tr>
     <td><%= song.name %></td>
-		<td></td>
-    <td><%= mp3_player song.mp3.url, { bg: "99FFFF", text: 'FF0000'} %> <%#= link_to 'play', song %></td>
+    <td class="aCenter"><%= mp3_player song.mp3.url, { bg: "99FFFF", text: 'FF0000'} %> <%#= link_to 'play', song %></td>
     <td><%= link_to 'Destroy', song, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+<p class="mTop20 fLeft">
+	<% link_to(new_song_path, {:class => "ui-state-hover ui-corner-all dialog_link clear", :id => "create_song"}) do %>
+	    <%= '<span class="ui-icon ui-icon-plusthick"></span>Add new song'.html_safe %>
+	<% end %>   
+</p>
+<%#= link_to 'New Song', new_song_path %>
 
-<%= link_to 'New Song', new_song_path %>
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $("#songListTable").styleTable();
+    });
+  </script>  
+<% end %>
